@@ -8,5 +8,5 @@
 import UIKit
 
 protocol Building {
-    func build() -> UIViewController
+    func build() -> UIViewController?
 }
