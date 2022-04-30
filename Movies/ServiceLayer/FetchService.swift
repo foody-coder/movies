@@ -8,14 +8,16 @@
 import Foundation
 
 struct FetchService {
-    typealias Model = Data
-
     var networkSession: NetworkSession
-    var url: URL
+}
+
+enum ServiceError: Error {
+    case receivedNilURL
 }
 
 extension FetchService: Service {
-    func execute() async throws -> Data {
+    func execute(api: MoviesAPI) async throws -> Data {
+        guard let url = api.url else { throw ServiceError.receivedNilURL }
         let data = try await networkSession.fetch(from: url)
         return data
     }

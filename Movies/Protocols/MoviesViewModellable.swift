@@ -7,6 +7,11 @@
 
 import Foundation
 
-protocol MoviesViewModellable {
-    func update()
+protocol MoviesViewModelable {
+    var navigationTitle: String { get }
+    var buttonTitle: String { get }
+    var collectionViewModel: MoviesCollectionViewModel? { get set }
+    var isSelected: Bool { get }
+    var selected: MovieViewModel? { get }
+    func movies() async throws -> [MovieViewModel]?
 }

@@ -8,12 +8,10 @@
 import Foundation
 
 protocol InputService {
-    associatedtype Model
-    associatedtype InputType
-    func execute(_ input: InputType) async throws -> Model
+    func execute<ResultItem>(_ input: Data, mapType: ResultItem.Type) async throws -> [ResultItem.Item] where ResultItem: Result
 }
 
 protocol Service {
     associatedtype Model
-    func execute() async throws -> Model
+    func execute(api: MoviesAPI) async throws -> Model
 }

@@ -8,10 +8,7 @@
 import Foundation
 
 struct MapperService: InputService {
-    typealias Model = [MovieItem]
-    typealias InputType = Data
-
-    func execute(_ input: Data) async throws -> [MovieItem] {
+    func execute<ResultItem>(_ input: Data, mapType: ResultItem.Type) async throws -> [ResultItem.Item] where ResultItem: Result {
         do {
             let resultItem: ResultItem = try JSONDecoder().decode(ResultItem.self, from: input)
             return resultItem.results

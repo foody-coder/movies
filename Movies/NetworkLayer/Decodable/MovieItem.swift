@@ -21,7 +21,7 @@ struct MovieItem: Decodable {
     var isWatched: Bool
 }
 
-struct ResultItem: Decodable {
+struct ResultMoviewItem: Decodable, Result {
     var results: [MovieItem]
 }
 

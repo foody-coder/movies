@@ -6,28 +6,55 @@
 //
 
 import Foundation
+import UIKit
 
 final class MoviesViewModel {
-    private let listService: FetchService
-    private let favoritesService: FetchService
+    private let fetchService: FetchService
     private let mapperService: MapperService
+    var collectionViewModel: MoviesCollectionViewModel?
+    var navigationTitle = "Movies Application"
+    var buttonTitle = "Next"
 
-    init(listService: FetchService, favoritesService: FetchService, mapperService: MapperService) {
-        self.listService = listService
-        self.favoritesService = favoritesService
+    init(fetchService: FetchService, mapperService: MapperService) {
+        self.fetchService = fetchService
         self.mapperService = mapperService
     }
 }
 
-extension MoviesViewModel: MoviesViewModellable {
-    func update() {
-        Task {
-            guard let moviesListsData  = try? await listService.execute(),
-            let favoritesListData = try? await favoritesService.execute() else { return }
+extension MoviesViewModel: MoviesViewModelable {
+    var isSelected: Bool {
+        collectionViewModel?.isSelectedMovie ?? false
+    }
+    var selected: MovieViewModel? { collectionViewModel?.selectedViewModel }
 
-            let moviesLists = try? await mapperService.execute(moviesListsData).sorted(by: <)
-            let favoritesLists = try? await mapperService.execute(favoritesListData).sorted(by: <)
+    func movies() async throws -> [MovieViewModel]? {
 
+        guard let moviesData  = try? await fetchService.execute(api: .list),
+              let favoritesData = try? await fetchService.execute(api: .favorites)
+        else { return nil }
+
+        // Getting all favorites ids in Set
+        let favoritesIds: Set<Int>? = try? await Set(mapperService.execute(favoritesData, mapType: ResultFavoriteItem.self).map { $0.id })
+
+        // 1. Getting all movies items from server
+        // 2. Sorting them by Comparable defined in MovieItem by rating if rating is equal than by title
+        // 3. Mapping MobiesItems to MoviewViewModels with checking if It favorit and load image inside asynchronous mapping
+
+        let moviesList = try? await mapperService.execute(moviesData, mapType: ResultMoviewItem.self).sorted(by: <).asyncMap { item -> MovieViewModel in
+            let imageData = try? await fetchService.execute(api: .image(item.poster_path))
+            return MovieViewModel(item: item, imageData: imageData, isFavorite: favoritesIds?.contains(item.id) ?? false)
         }
+
+        return moviesList
+    }
+}
+
+extension MoviesViewModel: MoviesModelUpdatable {
+    func didWatch() {
+        collectionViewModel?.didWatch()
+    }
+
+    func update(items: [MovieViewModel]?) {
+        collectionViewModel?.update(items: items)
     }
 }

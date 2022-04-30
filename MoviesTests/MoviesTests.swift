@@ -19,8 +19,8 @@ class MoviesTests: XCTestCase {
     }
 
     func testExample() throws {
-        let mockURLSession = MockURLSession()
-        let networkSession = NetworkSession(mockURLSession)
+//        let mockURLSession = MockURLSession()
+//        let networkSession = NetworkSession(mockURLSession)
     }
 
     func testPerformanceExample() throws {
