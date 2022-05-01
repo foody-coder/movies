@@ -25,7 +25,7 @@ final class MovieViewModel {
          rating: String,
          date: String,
          originalLanguage: String,
-         isWatched: Bool = false,
+         isWatched: Bool,
          isFavorite: Bool = false) {
         self.id = id
         self.imageData = imageData
@@ -46,6 +46,7 @@ final class MovieViewModel {
                   rating: "\(item.rating)",
                   date: item.release_date,
                   originalLanguage: item.original_language,
+                  isWatched: item.isWatched,
                   isFavorite: isFavorite)
     }
 }

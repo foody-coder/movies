@@ -21,7 +21,7 @@ struct MoviesSection: SectionProtocol {
 }
 
 final class MoviesCollectionViewModel: MoviesCollactionModellable {
-    struct IndexPath {
+    struct IndexPath: Equatable {
         var section: Int
         var index: Int
     }
