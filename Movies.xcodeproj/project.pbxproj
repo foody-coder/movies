@@ -42,7 +42,6 @@
 		C83AD4FC281EDA04004C22CA /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80BC924280FDA1C005A0BCA /* MockURLSession.swift */; };
 		C83AD505281EFA60004C22CA /* favorites.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83AD503281EFA60004C22CA /* favorites.txt */; };
 		C83AD506281EFA60004C22CA /* movies.list1.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83AD504281EFA60004C22CA /* movies.list1.txt */; };
-		C83AD507281F027F004C22CA /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80BC924280FDA1C005A0BCA /* MockURLSession.swift */; };
 		C83AD509281F0CC6004C22CA /* movies.list5.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83AD508281F0CC6004C22CA /* movies.list5.txt */; };
 		C83AD50B281F1C79004C22CA /* movies.list6.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83AD50A281F1C79004C22CA /* movies.list6.txt */; };
 		C83AD50D281F1F23004C22CA /* MoviesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83AD50C281F1F23004C22CA /* MoviesViewModelTests.swift */; };
@@ -502,7 +501,6 @@
 				C80BC94328112FD1005A0BCA /* Result.swift in Sources */,
 				C80BC921280F6798005A0BCA /* MoviesCollectionViewController.swift in Sources */,
 				C83AD4F7281D9A87004C22CA /* MoviesModelUpdatable.swift in Sources */,
-				C83AD507281F027F004C22CA /* MockURLSession.swift in Sources */,
 				C80BC90B280F5A71005A0BCA /* MoviesViewControllerBuilder.swift in Sources */,
 				C80BC9842815730A005A0BCA /* ReusableIdentifer.swift in Sources */,
 				C80BC913280F638F005A0BCA /* MoviesViewModellable.swift in Sources */,

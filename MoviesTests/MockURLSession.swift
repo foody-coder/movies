@@ -54,7 +54,7 @@ final class MockURLSession {
         switch api {
         case .list: self.matchInformation = MoviesList(index: index)
         case .favorites: self.matchInformation = Favorites()
-        case .image(let imagePath): self.matchInformation = ImageInfo()
+        case .image(_): self.matchInformation = ImageInfo()
         }
     }
 }
